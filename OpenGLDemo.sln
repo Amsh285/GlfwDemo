@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Window", "Window\Window.vcxproj", "{4F1A81F2-CC86-4948-9C26-9F450ACED5AC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangles", "Triangles\Triangles.vcxproj", "{72ACA002-31F3-48B8-A817-73093BC6489F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{4F1A81F2-CC86-4948-9C26-9F450ACED5AC}.Debug|x64.Build.0 = Debug|x64
 		{4F1A81F2-CC86-4948-9C26-9F450ACED5AC}.Release|x64.ActiveCfg = Release|x64
 		{4F1A81F2-CC86-4948-9C26-9F450ACED5AC}.Release|x64.Build.0 = Release|x64
+		{72ACA002-31F3-48B8-A817-73093BC6489F}.Debug|x64.ActiveCfg = Debug|x64
+		{72ACA002-31F3-48B8-A817-73093BC6489F}.Debug|x64.Build.0 = Debug|x64
+		{72ACA002-31F3-48B8-A817-73093BC6489F}.Release|x64.ActiveCfg = Release|x64
+		{72ACA002-31F3-48B8-A817-73093BC6489F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
