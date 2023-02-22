@@ -14,28 +14,37 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-unsigned int register_triangle()
+void register_triangle()
 {
 	float vertices[] = {
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		0.0f, 0.5f, 0.0f
+		0.5f, 0.5f, 0.0f, // Top Right
+		0.5f, -0.5f, 0.0f, // Bottom Right
+		-0.5f, -0.5f, 0.0f, // Bottom Left
+		-0.5f, 0.5f, 0.0f // Top Left
+	};
+
+	unsigned int indices[] = {
+		0, 1, 3,
+		1, 2, 3
 	};
 
 	unsigned int vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 12, vertices, GL_STATIC_DRAW);
+
+	unsigned int ebo;
+	glGenBuffers(1, &ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * 6, indices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-
-	return vbo;
 }
 
 unsigned int register_vertex_shader()
 {
-	const char* src ="#version 330 core\n"
+	const char* src = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"\n"
 		"void main()\n"
@@ -115,17 +124,6 @@ bool check_shader_program(unsigned shader_program_id)
 
 int main()
 {
-	// Warum geht das nicht hier?
-	/*if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	// Fehlt das?
-	glfwMakeContextCurrent(window);
-	*/
-
 	if (!glfwInit())
 	{
 		std::cout << "Error initializing OpenGL." << std::endl;
@@ -160,7 +158,7 @@ int main()
 	glGenVertexArrays(1, &vao_id);
 	glBindVertexArray(vao_id);
 
-	unsigned int vbo_id = register_triangle();
+	register_triangle();
 
 	unsigned int vertex_shader_id = register_vertex_shader();
 	unsigned int fragment_shader_id = register_fragment_shader();
@@ -189,7 +187,8 @@ int main()
 		//render here
 		glUseProgram(shader_program_id);
 		glBindVertexArray(vao_id);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

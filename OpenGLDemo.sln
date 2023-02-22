@@ -5,7 +5,11 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Window", "Window\Window.vcxproj", "{4F1A81F2-CC86-4948-9C26-9F450ACED5AC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangles", "Triangles\Triangles.vcxproj", "{72ACA002-31F3-48B8-A817-73093BC6489F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle", "Triangles\Triangles.vcxproj", "{72ACA002-31F3-48B8-A817-73093BC6489F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercises", "Exercises", "{65DC867D-E36E-4FEB-80F1-177C7944731B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ElementBufferObjects", "ElementBufferObjects\ElementBufferObjects.vcxproj", "{0315F434-1D78-41FD-A315-CEEA0D8F4D18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,10 @@ Global
 		{72ACA002-31F3-48B8-A817-73093BC6489F}.Debug|x64.Build.0 = Debug|x64
 		{72ACA002-31F3-48B8-A817-73093BC6489F}.Release|x64.ActiveCfg = Release|x64
 		{72ACA002-31F3-48B8-A817-73093BC6489F}.Release|x64.Build.0 = Release|x64
+		{0315F434-1D78-41FD-A315-CEEA0D8F4D18}.Debug|x64.ActiveCfg = Debug|x64
+		{0315F434-1D78-41FD-A315-CEEA0D8F4D18}.Debug|x64.Build.0 = Debug|x64
+		{0315F434-1D78-41FD-A315-CEEA0D8F4D18}.Release|x64.ActiveCfg = Release|x64
+		{0315F434-1D78-41FD-A315-CEEA0D8F4D18}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
