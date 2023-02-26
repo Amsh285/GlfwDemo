@@ -16,7 +16,7 @@ namespace dsr
 		void Bind();
 		void Unbind();
 	private:
-		VertexArrayObject(unsigned int vao) : m_vao(vao) {};
+		VertexArrayObject(const unsigned int& vao) : m_vao(vao) {};
 		unsigned int m_vao;
 	};
 }

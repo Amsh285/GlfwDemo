@@ -19,7 +19,7 @@ namespace dsr
 		void SetStaticDraw(const std::vector<float>& data);
 		void Unbind();
 	private:
-		VertexBufferObject(unsigned int vbo) : m_vbo(vbo) {};
+		VertexBufferObject(const unsigned int& vbo) : m_vbo(vbo) {};
 		unsigned int m_vbo;
 	};
 }
