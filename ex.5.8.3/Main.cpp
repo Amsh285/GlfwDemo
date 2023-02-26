@@ -1,8 +1,10 @@
-
 #include <iostream>
 #include <vector>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Common.h"
+
+#include "VertexBufferObject.h"
+#include "ElementBufferObject.h"
+#include "VertexArrayObject.h"
 
 void process_input(GLFWwindow* window)
 {
@@ -15,72 +17,68 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-std::vector<unsigned int> register_triangles()
+std::vector<std::shared_ptr<dsr::VertexArrayObject>> register_triangles()
 {
-	constexpr int first = 0;
-	constexpr int second = 1;
+	std::vector<std::shared_ptr<dsr::VertexArrayObject>> vaos;
 
-	std::vector<unsigned int> vaos;
-
-	unsigned int vao_ids[2];
-	glGenVertexArrays(2, vao_ids);
-
-	unsigned int vbo_ids[2];
-	glGenBuffers(2, vbo_ids);
-
-	unsigned int ebo_ids[2];
-	glGenBuffers(2, ebo_ids);
-
-	unsigned int indices[] = {
+	std::vector<unsigned int> indices = {
 		0, 1, 2
 	};
 
-	// first vao
-	glBindVertexArray(vao_ids[first]);
+	std::shared_ptr<dsr::VertexArrayObject> vao1 = dsr::VertexArrayObject::GenerateGL();
+	std::shared_ptr<dsr::VertexBufferObject> vbo1 = dsr::VertexBufferObject::GenrateGl();
+	std::shared_ptr<dsr::ElementBufferObject> ebo1 = dsr::ElementBufferObject::GenerateGL();
 
-	float first_triangle[] = {
+	vao1->Bind();
+
+	std::vector<float> first_triangle = {
 		0.5f, 0.5f, 0.0f,
 		0.75f, 0.0f, 0.0f,
 		0.25f, 0.0f, 0.0f,
 	};
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ids[first]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, first_triangle, GL_STATIC_DRAW);
+	vbo1->Bind();
+	vbo1->SetStaticDraw(first_triangle);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_ids[first]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * 3, indices, GL_STATIC_DRAW);
-	
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+	ebo1->Bind();
+	ebo1->SetStaticDraw(indices);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glBindVertexArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	vao1->Unbind();
+	vbo1->Unbind();
+	ebo1->Unbind();
 
-	// second vao
-	glBindVertexArray(vao_ids[second]);
+	vaos.push_back(vao1);
 
-	float second_triangle[] = {
+	std::shared_ptr<dsr::VertexArrayObject> vao2 = dsr::VertexArrayObject::GenerateGL();
+	std::shared_ptr<dsr::VertexBufferObject> vbo2 = dsr::VertexBufferObject::GenrateGl();
+	std::shared_ptr<dsr::ElementBufferObject> ebo2 = dsr::ElementBufferObject::GenerateGL();
+
+	vao2->Bind();
+
+	std::vector<float> second_triangle = {
 		-0.5f, 0.5f, 0.0f,
 		-0.25f, 0.0f, 0.0f,
 		-0.75f, 0.0f, 0.0f
 	};
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ids[second]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, second_triangle, GL_STATIC_DRAW);
+	vbo2->Bind();
+	vbo2->SetStaticDraw(second_triangle);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_ids[second]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * 3, indices, GL_STATIC_DRAW);
+	ebo2->Bind();
+	ebo2->SetStaticDraw(indices);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glBindVertexArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	vao2->Unbind();
+	vbo2->Unbind();
+	ebo2->Unbind();
 
-	vaos.push_back(vao_ids[first]);
-	vaos.push_back(vao_ids[second]);
+	vaos.push_back(vao2);
+
 	return vaos;
 }
 
@@ -196,7 +194,7 @@ int main()
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-	std::vector<unsigned int> vao_ids = register_triangles();
+	std::vector<std::shared_ptr<dsr::VertexArrayObject>> vaos = register_triangles();
 
 	unsigned int vertex_shader_id = register_vertex_shader();
 	unsigned int fragment_shader_id = register_fragment_shader();
@@ -224,10 +222,10 @@ int main()
 
 		//render here
 
-		for (auto it = vao_ids.begin(); it != vao_ids.end(); ++it)
+		for (auto it = vaos.begin(); it != vaos.end(); ++it)
 		{
 			glUseProgram(shader_program_id);
-			glBindVertexArray(*it);
+			(*it)->Bind();
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 			glBindVertexArray(0);
 		}
