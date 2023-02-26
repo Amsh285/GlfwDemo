@@ -16,6 +16,7 @@
     <ProjectGuid>{4eed8574-00a9-4d10-9d37-cf795f00c00a}</ProjectGuid>
     <RootNamespace>Common</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Dsr.Core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -86,7 +87,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="DsrCore.h" />
     <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="VertexArrayObject.h" />

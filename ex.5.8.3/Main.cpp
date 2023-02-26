@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Common.h"
+#include "DsrCore.h"
 
 #include "VertexBufferObject.h"
 #include "ElementBufferObject.h"

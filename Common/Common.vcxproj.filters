@@ -18,7 +18,7 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
+    <ClInclude Include="DsrCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
