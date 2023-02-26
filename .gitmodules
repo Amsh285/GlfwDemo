@@ -1,0 +1,3 @@
+[submodule "Dsr.Core/vendor/spdlog"]
+	path = Dsr.Core/vendor/spdlog
+	url = https://github.com/gabime/spdlog

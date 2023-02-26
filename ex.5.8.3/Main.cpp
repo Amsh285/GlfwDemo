@@ -6,6 +6,8 @@
 #include "ElementBufferObject.h"
 #include "VertexArrayObject.h"
 
+#include "SpdLoggerFactory.h"
+
 void process_input(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -164,6 +166,11 @@ bool check_shader_program(unsigned shader_program_id)
 
 int main()
 {
+	auto logger = dsr::loggerfactory::CreateLogger("ex.5.8.3");
+	logger->warn("this should appear in both console and file");
+	logger->info("this message should not appear in the console, only in the file");
+	logger->warn("formated Text: {0} {1}", 10, 22.5);
+
 	if (!glfwInit())
 	{
 		std::cout << "Error initializing OpenGL." << std::endl;

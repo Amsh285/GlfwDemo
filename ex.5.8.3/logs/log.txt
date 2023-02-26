@@ -1,0 +1,17 @@
+[2023-02-26 16:22:57.937] [ex.5.8.3] [warning] this should appear in both console and file
+[2023-02-26 16:22:57.937] [ex.5.8.3] [info] this message should not appear in the console, only in the file
+[2023-02-26 16:25:44.794] [ex.5.8.3] [warning] this should appear in both console and file
+[2023-02-26 16:25:44.795] [ex.5.8.3] [info] this message should not appear in the console, only in the file
+[2023-02-26 16:34:00.408] [ex.5.8.3] [warning] this should appear in both console and file
+[2023-02-26 16:34:00.409] [ex.5.8.3] [info] this message should not appear in the console, only in the file
+[2023-02-26 16:45:14.361] [[ex.5.8.3] [Main]] [warning] this should appear in both console and file
+[2023-02-26 16:45:14.362] [[ex.5.8.3] [Main]] [info] this message should not appear in the console, only in the file
+[2023-02-26 16:45:55.820] [ex.5.8.3] [Main] [warning] this should appear in both console and file
+[2023-02-26 16:45:55.821] [ex.5.8.3] [Main] [info] this message should not appear in the console, only in the file
+[2023-02-26 17:26:31.479] [ex.5.8.3 Main] [warning] this should appear in both console and file
+[2023-02-26 18:01:50.775] [ex.5.8.3 Main] [warning] this should appear in both console and file
+[2023-02-26 18:01:50.776] [ex.5.8.3 Main] [info] this message should not appear in the console, only in the file
+[2023-02-26 18:01:50.776] [ex.5.8.3 Main] [warning] formated Text: 10 22.5
+[2023-02-26 18:57:02.376] [ex.5.8.3] [warning] this should appear in both console and file
+[2023-02-26 18:57:02.382] [ex.5.8.3] [info] this message should not appear in the console, only in the file
+[2023-02-26 18:57:02.382] [ex.5.8.3] [warning] formated Text: 10 22.5
