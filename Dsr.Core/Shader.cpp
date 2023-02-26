@@ -24,7 +24,7 @@ namespace dsr
 		glCompileShader(m_shaderId);
 	}
 
-	ShaderCompileStatus Shader::GetCompileStatus()
+	ShaderCompileStatus Shader::GetCompileStatus() const
 	{
 		constexpr int bufferSize = 512;
 

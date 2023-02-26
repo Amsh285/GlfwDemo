@@ -34,7 +34,7 @@ namespace dsr
 		const unsigned int& GetShaderId() const { return m_shaderId; };
 
 		void Compile() const;
-		ShaderCompileStatus GetCompileStatus();
+		ShaderCompileStatus GetCompileStatus() const;
 
 		Shader() = delete;
 	private:

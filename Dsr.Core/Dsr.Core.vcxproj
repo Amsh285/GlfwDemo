@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClInclude Include="DsrCore.h" />
     <ClInclude Include="ElementBufferObject.h" />
+    <ClInclude Include="NotSupportedException.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpdLoggerFactory.h" />
     <ClInclude Include="VertexArrayObject.h" />
