@@ -11,21 +11,37 @@ namespace dsr
 		stringStream << fileStream.rdbuf();
 		fileContent = stringStream.str();
 
+		return GenerateGL(fileContent, type);
+	}
+
+	std::shared_ptr<Shader> Shader::GenerateGL(const std::string& src, const ShaderType& type)
+	{
 		unsigned int shaderId = glCreateShader(ConvertShaderType(type));
 
-		Shader* ptr = new Shader(fileContent, type, shaderId);
+		if (!shaderId)
+			throw std::runtime_error("glCreateShader failed.");
+
+		Shader* ptr = new Shader(src, type, shaderId);
 		return std::shared_ptr<Shader>(ptr);
 	}
 
-	void Shader::Compile() const
+	void Shader::Compile()
 	{
+		if (m_disposed)
+			throw dsr::InvalidOperationException("Compile Error: Shader is disposed.");;
+
 		const char* src = m_code.c_str();
 		glShaderSource(m_shaderId, 1, &src, NULL);
 		glCompileShader(m_shaderId);
+
+		m_compiled = true;
 	}
 
 	ShaderCompileStatus Shader::GetCompileStatus() const
 	{
+		if (m_disposed)
+			throw dsr::InvalidOperationException("GetCompileStatus Error: Shader is disposed.");;
+
 		constexpr int bufferSize = 512;
 
 		int success;
@@ -38,6 +54,18 @@ namespace dsr
 		compileStatus.InfoLog = infoLog;
 
 		return compileStatus;
+	}
+
+	void Shader::Dispose()
+	{
+		if (!m_disposed)
+		{
+			glDeleteShader(m_shaderId);
+
+			m_shaderId = 0;
+			m_code = "";
+			m_disposed = true;
+		}
 	}
 
 	unsigned int Shader::ConvertShaderType(const ShaderType& type)

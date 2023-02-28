@@ -6,6 +6,7 @@
 #include <string>
 
 #include <glad/glad.h>
+#include "InvalidOperationException.h"
 #include "NotSupportedException.h"
 #include "SpdLoggerFactory.h"
 
@@ -30,13 +31,25 @@ namespace dsr
 			const std::string& path,
 			const ShaderType& type
 		);
-		
-		const unsigned int& GetShaderId() const { return m_shaderId; };
 
-		void Compile() const;
+		static std::shared_ptr<Shader> GenerateGL(
+			const std::string& src,
+			const ShaderType& type
+		);
+		
+		unsigned int GetShaderId() const { return m_shaderId; };
+		const bool& IsCompiled() const { return m_compiled; };
+
+		void Compile();
 		ShaderCompileStatus GetCompileStatus() const;
+		void Dispose();
+
 
 		Shader() = delete;
+		Shader(const Shader& other) = delete;
+		Shader& operator=(const Shader& other) = delete;
+
+		~Shader() { Dispose(); };
 	private:
 		Shader(
 			const std::string& code,
@@ -48,8 +61,11 @@ namespace dsr
 
 		static unsigned int ConvertShaderType(const ShaderType& type);
 
-		const std::string m_code;
+		std::string m_code;
 		const ShaderType m_type;
-		const unsigned int m_shaderId;
+		unsigned int m_shaderId;
+
+		bool m_disposed = false;
+		bool m_compiled = false;
 	};
 }

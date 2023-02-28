@@ -89,8 +89,10 @@
   <ItemGroup>
     <ClInclude Include="DsrCore.h" />
     <ClInclude Include="ElementBufferObject.h" />
+    <ClInclude Include="InvalidOperationException.h" />
     <ClInclude Include="NotSupportedException.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="SpdLoggerFactory.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />
@@ -99,6 +101,7 @@
     <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
   </ItemGroup>

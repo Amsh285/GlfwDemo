@@ -6,6 +6,8 @@
 #include "ElementBufferObject.h"
 #include "VertexArrayObject.h"
 
+#include "Shader.h"
+#include "ShaderProgram.h"
 #include "SpdLoggerFactory.h"
 
 void process_input(GLFWwindow* window)
@@ -84,92 +86,75 @@ std::vector<std::shared_ptr<dsr::VertexArrayObject>> register_triangles()
 	return vaos;
 }
 
-unsigned int register_vertex_shader()
+std::vector<std::shared_ptr<dsr::ShaderProgram>> LoadShaders(const std::shared_ptr<spdlog::logger>& logger)
 {
-	const char* src = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"\n"
-		"void main()\n"
-		"{\n"
-		" gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"}\0";
+	std::vector<std::shared_ptr<dsr::ShaderProgram>> programs;
 
-	unsigned int vertex_shader;
-	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertex_shader, 1, &src, NULL);
-	glCompileShader(vertex_shader);
+	std::shared_ptr<dsr::Shader> vertexShader = dsr::Shader::Load("shaders/vertexshader.shader", dsr::ShaderType::Vertex);
+	vertexShader->Compile();
+	dsr::ShaderCompileStatus vertexShaderStatus = vertexShader->GetCompileStatus();
 
-	return vertex_shader;
-}
-
-unsigned int register_fragment_shader()
-{
-	const char* src = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"\n"
-		"void main()\n"
-		"{\n"
-		"FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\0";
-
-	unsigned int fragment_shader;
-	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragment_shader, 1, &src, NULL);
-	glCompileShader(fragment_shader);
-
-	return fragment_shader;
-}
-
-unsigned int register_shader_program(const unsigned int& vertex_shader_id, const unsigned int& fragment_shader_id)
-{
-	unsigned int shader_program;
-	shader_program = glCreateProgram();
-
-	glAttachShader(shader_program, vertex_shader_id);
-	glAttachShader(shader_program, fragment_shader_id);
-	glLinkProgram(shader_program);
-
-	return shader_program;
-}
-
-bool check_shader(unsigned shader_id)
-{
-	int success;
-	char info_log[512];
-	glGetShaderiv(shader_id, GL_COMPILE_STATUS, &success);
-
-	if (!success)
+	if (!vertexShaderStatus.Success)
 	{
-		glGetShaderInfoLog(shader_id, 512, NULL, info_log);
-		std::cout << "Shader compilation failed:" << std::endl << info_log << std::endl;
-		return false;
+		logger->warn("Error compiling VertexShader: {0}", vertexShaderStatus.InfoLog);
+		return programs;
 	}
 
-	return true;
-}
+	std::shared_ptr<dsr::Shader> fragmentShaderRed = dsr::Shader::Load("shaders/fragmentshader_red.shader", dsr::ShaderType::Fragment);
+	fragmentShaderRed->Compile();
+	dsr::ShaderCompileStatus fragmentShaderRedStatus = fragmentShaderRed->GetCompileStatus();
 
-bool check_shader_program(unsigned shader_program_id)
-{
-	int success;
-	char info_log[512];
-	glGetShaderiv(shader_program_id, GL_LINK_STATUS, &success);
-
-	if (!success)
+	if (!fragmentShaderRedStatus.Success)
 	{
-		glGetShaderInfoLog(shader_program_id, 512, NULL, info_log);
-		std::cout << "linking failed:" << std::endl << info_log << std::endl;
-		return false;
+		logger->warn("Error compiling FragmentShaderRed: {0}", fragmentShaderRedStatus.InfoLog);
+		return programs;
 	}
 
-	return true;
+	std::shared_ptr<dsr::ShaderProgram> program1 = dsr::ShaderProgram::GenerateGL();
+	program1->Attach(vertexShader);
+	program1->Attach(fragmentShaderRed);
+	program1->Link();
+
+	dsr::ShaderLinkStatus linkStatus1 = program1->GetLinkStatus();
+
+	if(!linkStatus1.Success)
+	{ 
+		logger->warn("Error linking ShaderProgram Nr.1: {0}", linkStatus1.InfoLog);
+		return programs;
+	}
+
+	programs.push_back(program1);
+
+	std::shared_ptr<dsr::Shader> fragmentShaderGreen = dsr::Shader::Load("shaders/fragmentshader_green.shader", dsr::ShaderType::Fragment);
+	fragmentShaderGreen->Compile();
+	dsr::ShaderCompileStatus fragmentShaderGreenStatus = fragmentShaderRed->GetCompileStatus();
+
+	if (!fragmentShaderGreenStatus.Success)
+	{
+		logger->warn("Error compiling FragmentShaderGreen: {0}", fragmentShaderGreenStatus.InfoLog);
+		return programs;
+	}
+
+	std::shared_ptr<dsr::ShaderProgram> program2 = dsr::ShaderProgram::GenerateGL();
+	program2->Attach(vertexShader);
+	program2->Attach(fragmentShaderGreen);
+	program2->Link();
+
+	dsr::ShaderLinkStatus linkStatus2 = program2->GetLinkStatus();
+
+	if (!linkStatus2.Success)
+	{
+		logger->warn("Error linking ShaderProgram Nr.2: {0}", linkStatus1.InfoLog);
+		return programs;
+	}
+
+	programs.push_back(program2);
+	return programs;
 }
 
 int main()
 {
-	auto logger = dsr::loggerfactory::CreateLogger("ex.5.8.3");
-	logger->warn("this should appear in both console and file");
-	logger->info("this message should not appear in the console, only in the file");
-	logger->warn("formated Text: {0} {1}", 10, 22.5);
+	const std::shared_ptr<spdlog::logger> logger = dsr::loggerfactory::CreateLogger("ex.5.8.3");
 
 	if (!glfwInit())
 	{
@@ -202,23 +187,7 @@ int main()
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	std::vector<std::shared_ptr<dsr::VertexArrayObject>> vaos = register_triangles();
-
-	unsigned int vertex_shader_id = register_vertex_shader();
-	unsigned int fragment_shader_id = register_fragment_shader();
-
-	if (!check_shader(vertex_shader_id))
-		return EXIT_FAILURE;
-
-	if (!check_shader(fragment_shader_id))
-		return EXIT_FAILURE;
-
-	unsigned shader_program_id = register_shader_program(vertex_shader_id, fragment_shader_id);
-
-	if (!check_shader_program(shader_program_id))
-		return EXIT_FAILURE;
-
-	glDeleteShader(vertex_shader_id);
-	glDeleteShader(fragment_shader_id);
+	std::vector<std::shared_ptr<dsr::ShaderProgram>> shaderPrograms = LoadShaders(logger);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -229,12 +198,16 @@ int main()
 
 		//render here
 
-		for (auto it = vaos.begin(); it != vaos.end(); ++it)
+		for (size_t i = 0; i < vaos.size(); i++)
 		{
-			glUseProgram(shader_program_id);
-			(*it)->Bind();
+			auto currentVao = vaos[i];
+
+			if (shaderPrograms.size() > 0 && i < shaderPrograms.size())
+				shaderPrograms[i]->Use();
+
+			currentVao->Bind();
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-			glBindVertexArray(0);
+			currentVao->Unbind();
 		}
 
 		glfwSwapBuffers(window);
