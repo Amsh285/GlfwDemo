@@ -202,7 +202,7 @@ int main()
 		{
 			auto currentVao = vaos[i];
 
-			if (shaderPrograms.size() > 0 && i < shaderPrograms.size())
+			if (i < shaderPrograms.size())
 				shaderPrograms[i]->Use();
 
 			currentVao->Bind();
