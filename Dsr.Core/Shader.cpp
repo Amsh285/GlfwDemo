@@ -27,9 +27,6 @@ namespace dsr
 
 	void Shader::Compile()
 	{
-		if (m_disposed)
-			throw dsr::InvalidOperationException("Compile Error: Shader is disposed.");;
-
 		const char* src = m_code.c_str();
 		glShaderSource(m_shaderId, 1, &src, NULL);
 		glCompileShader(m_shaderId);
@@ -39,9 +36,6 @@ namespace dsr
 
 	ShaderCompileStatus Shader::GetCompileStatus() const
 	{
-		if (m_disposed)
-			throw dsr::InvalidOperationException("GetCompileStatus Error: Shader is disposed.");;
-
 		constexpr int bufferSize = 512;
 
 		int success;
@@ -56,16 +50,10 @@ namespace dsr
 		return compileStatus;
 	}
 
-	void Shader::Dispose()
+	Shader::~Shader()
 	{
-		if (!m_disposed)
-		{
-			glDeleteShader(m_shaderId);
-
-			m_shaderId = 0;
-			m_code = "";
-			m_disposed = true;
-		}
+		glDeleteShader(m_shaderId);
+		m_shaderId = 0;
 	}
 
 	unsigned int Shader::ConvertShaderType(const ShaderType& type)

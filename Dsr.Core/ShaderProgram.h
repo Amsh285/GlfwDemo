@@ -25,7 +25,6 @@ namespace dsr
 		ShaderLinkStatus GetLinkStatus() const;
 
 		void Use() const;
-		void Dispose();
 
 		ShaderProgram() = delete;
 		ShaderProgram(const ShaderProgram& other) = delete;
@@ -37,6 +36,5 @@ namespace dsr
 			: m_programId(programId) {};
 
 		unsigned int m_programId;
-		bool m_disposed = false;
 	};
 }

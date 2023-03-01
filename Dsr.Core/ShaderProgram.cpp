@@ -16,9 +16,6 @@ namespace dsr
 
 	void ShaderProgram::Attach(const std::shared_ptr<Shader>& shader) const
 	{
-		if (m_disposed)
-			throw new InvalidOperationException("Cannot attach Shader to disposed Shaderprogram.");
-
 		if (!shader->IsCompiled())
 			throw new InvalidOperationException("Cannot attach uncompiled Shader.");
 
@@ -27,17 +24,11 @@ namespace dsr
 
 	void ShaderProgram::Link() const
 	{
-		if (m_disposed)
-			throw new InvalidOperationException("Cannot Link disposed Shaderprogram.");
-
 		glLinkProgram(m_programId);
 	}
 
 	ShaderLinkStatus ShaderProgram::GetLinkStatus() const
 	{
-		if (m_disposed)
-			throw InvalidOperationException("GetLinkStatus Error: ShaderProgram is disposed.");;
-
 		constexpr int bufferSize = 512;
 
 		int success;
@@ -54,24 +45,12 @@ namespace dsr
 
 	void ShaderProgram::Use() const
 	{
-		if (m_disposed)
-			throw new InvalidOperationException("Cannot Use disposed Shaderprogram.");
-
 		glUseProgram(m_programId);
-	}
-
-	void ShaderProgram::Dispose()
-	{
-		if (!m_disposed)
-		{
-			glDeleteProgram(m_programId);
-			m_programId = 0;
-			m_disposed = true;
-		}
 	}
 
 	ShaderProgram::~ShaderProgram()
 	{
-		Dispose();
+		glDeleteProgram(m_programId);
+		m_programId = 0;
 	}
 }

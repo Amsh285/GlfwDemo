@@ -42,14 +42,13 @@ namespace dsr
 
 		void Compile();
 		ShaderCompileStatus GetCompileStatus() const;
-		void Dispose();
 
 
 		Shader() = delete;
 		Shader(const Shader& other) = delete;
 		Shader& operator=(const Shader& other) = delete;
 
-		~Shader() { Dispose(); };
+		~Shader();
 	private:
 		Shader(
 			const std::string& code,
@@ -65,7 +64,6 @@ namespace dsr
 		const ShaderType m_type;
 		unsigned int m_shaderId;
 
-		bool m_disposed = false;
 		bool m_compiled = false;
 	};
 }
