@@ -16,17 +16,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 int main()
 {
-	// Warum geht das nicht hier?
-	/*if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	// Fehlt das?
-	glfwMakeContextCurrent(window);
-	*/
-
 	if (!glfwInit())
 	{
 		std::cout << "Error initializing OpenGL." << std::endl;
