@@ -9,17 +9,23 @@ namespace dsr
 
 		return std::shared_ptr<VertexBufferObject>(new VertexBufferObject(vbo));
 	}
-	void VertexBufferObject::Bind()
+	void VertexBufferObject::Bind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	}
 
-	void VertexBufferObject::SetStaticDraw(const std::vector<float>& data)
+	void VertexBufferObject::SetBufferData(const std::vector<float>& data, bool staticDraw) const
 	{
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STATIC_DRAW);
+		glBufferData(
+			GL_ARRAY_BUFFER,
+			sizeof(float) * data.size(),
+			data.data(),
+			staticDraw ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW);
+
+		//later: https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml
 	}
 
-	void VertexBufferObject::Unbind()
+	void VertexBufferObject::Unbind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}

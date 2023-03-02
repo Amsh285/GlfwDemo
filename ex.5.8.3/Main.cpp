@@ -2,13 +2,11 @@
 #include <vector>
 #include "DsrCore.h"
 
-#include "VertexBufferObject.h"
-#include "ElementBufferObject.h"
-#include "VertexArrayObject.h"
-
 #include "Shader.h"
 #include "ShaderProgram.h"
 #include "SpdLoggerFactory.h"
+
+#include "VaoAggregate.h"
 
 void process_input(GLFWwindow* window)
 {
@@ -21,19 +19,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-std::vector<std::shared_ptr<dsr::VertexArrayObject>> register_triangles()
+std::vector<dsr::VaoAggregate> register_triangles()
 {
-	std::vector<std::shared_ptr<dsr::VertexArrayObject>> vaos;
+	std::vector<dsr::VaoAggregate> vaos;
 
 	std::vector<unsigned int> indices = {
 		0, 1, 2
 	};
-
-	std::shared_ptr<dsr::VertexArrayObject> vao1 = dsr::VertexArrayObject::GenerateGL();
-	std::shared_ptr<dsr::VertexBufferObject> vbo1 = dsr::VertexBufferObject::GenrateGl();
-	std::shared_ptr<dsr::ElementBufferObject> ebo1 = dsr::ElementBufferObject::GenerateGL();
-
-	vao1->Bind();
 
 	std::vector<float> first_triangle = {
 		0.5f, 0.5f, 0.0f,
@@ -41,26 +33,11 @@ std::vector<std::shared_ptr<dsr::VertexArrayObject>> register_triangles()
 		0.25f, 0.0f, 0.0f,
 	};
 
-	vbo1->Bind();
-	vbo1->SetStaticDraw(first_triangle);
+	dsr::VertexAttributeContainer attributes;
+	attributes.Append(3);
 
-	ebo1->Bind();
-	ebo1->SetStaticDraw(indices);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	vao1->Unbind();
-	vbo1->Unbind();
-	ebo1->Unbind();
-
+	dsr::VaoAggregate vao1 = dsr::VaoAggregate::Build(first_triangle, indices, attributes);
 	vaos.push_back(vao1);
-
-	std::shared_ptr<dsr::VertexArrayObject> vao2 = dsr::VertexArrayObject::GenerateGL();
-	std::shared_ptr<dsr::VertexBufferObject> vbo2 = dsr::VertexBufferObject::GenrateGl();
-	std::shared_ptr<dsr::ElementBufferObject> ebo2 = dsr::ElementBufferObject::GenerateGL();
-
-	vao2->Bind();
 
 	std::vector<float> second_triangle = {
 		-0.5f, 0.5f, 0.0f,
@@ -68,19 +45,7 @@ std::vector<std::shared_ptr<dsr::VertexArrayObject>> register_triangles()
 		-0.75f, 0.0f, 0.0f
 	};
 
-	vbo2->Bind();
-	vbo2->SetStaticDraw(second_triangle);
-
-	ebo2->Bind();
-	ebo2->SetStaticDraw(indices);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	vao2->Unbind();
-	vbo2->Unbind();
-	ebo2->Unbind();
-
+	dsr::VaoAggregate vao2 = dsr::VaoAggregate::Build(second_triangle, indices, attributes);
 	vaos.push_back(vao2);
 
 	return vaos;
@@ -186,7 +151,7 @@ int main()
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-	std::vector<std::shared_ptr<dsr::VertexArrayObject>> vaos = register_triangles();
+	std::vector<dsr::VaoAggregate> vaos = register_triangles();
 	std::vector<std::shared_ptr<dsr::ShaderProgram>> shaderPrograms = LoadShaders(logger);
 
 	while (!glfwWindowShouldClose(window))
@@ -205,9 +170,9 @@ int main()
 			if (i < shaderPrograms.size())
 				shaderPrograms[i]->Use();
 
-			currentVao->Bind();
+			currentVao.Bind();
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-			currentVao->Unbind();
+			currentVao.Unbind();
 		}
 
 		glfwSwapBuffers(window);

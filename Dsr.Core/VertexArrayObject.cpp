@@ -9,10 +9,12 @@ namespace dsr
 
 		return std::shared_ptr<VertexArrayObject>(new VertexArrayObject(vao));
 	}
+
 	void VertexArrayObject::Bind()
 	{
 		glBindVertexArray(m_vao);
 	}
+
 	void VertexArrayObject::Unbind()
 	{
 		glBindVertexArray(0);

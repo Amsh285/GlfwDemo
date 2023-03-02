@@ -94,7 +94,10 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="SpdLoggerFactory.h" />
+    <ClInclude Include="VaoAggregate.h" />
     <ClInclude Include="VertexArrayObject.h" />
+    <ClInclude Include="VertexAttribute.h" />
+    <ClInclude Include="VertexAttributeContainer.h" />
     <ClInclude Include="VertexBufferObject.h" />
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +105,9 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="VaoAggregate.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
+    <ClCompile Include="VertexAttributeContainer.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

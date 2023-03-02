@@ -15,7 +15,7 @@ namespace dsr
 		ElementBufferObject() = delete;
 
 		void Bind();
-		void SetStaticDraw(const std::vector<unsigned int>& indices);
+		void SetBufferData(const std::vector<unsigned int>& indices, bool staticDraw = false);
 		void Unbind();
 	private:
 		ElementBufferObject(const unsigned int& ebo) : m_ebo(ebo) {};

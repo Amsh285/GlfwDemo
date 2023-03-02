@@ -15,9 +15,13 @@ namespace dsr
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
 	}
 
-	void ElementBufferObject::SetStaticDraw(const std::vector<unsigned int>& indices)
+	void ElementBufferObject::SetBufferData(const std::vector<unsigned int>& indices, bool staticDraw)
 	{
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
+		glBufferData(
+			GL_ELEMENT_ARRAY_BUFFER,
+			sizeof(unsigned int) * indices.size(),
+			indices.data(),
+			staticDraw ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW);
 	}
 
 	void ElementBufferObject::Unbind()

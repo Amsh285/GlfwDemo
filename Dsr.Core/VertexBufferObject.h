@@ -15,9 +15,9 @@ namespace dsr
 		VertexBufferObject() = delete;
 		
 
-		void Bind();
-		void SetStaticDraw(const std::vector<float>& data);
-		void Unbind();
+		void Bind() const;
+		void SetBufferData(const std::vector<float>& data, bool staticDraw = true) const;
+		void Unbind() const;
 	private:
 		VertexBufferObject(const unsigned int& vbo) : m_vbo(vbo) {};
 		unsigned int m_vbo;
