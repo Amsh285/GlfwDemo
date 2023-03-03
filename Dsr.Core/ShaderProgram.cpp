@@ -32,7 +32,7 @@ namespace dsr
 		constexpr int bufferSize = 512;
 
 		int success;
-		char infoLog[bufferSize];
+		char infoLog[bufferSize] = "";
 		glGetShaderiv(m_programId, GL_LINK_STATUS, &success);
 		glGetShaderInfoLog(m_programId, bufferSize, NULL, infoLog);
 

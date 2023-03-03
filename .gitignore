@@ -35,6 +35,7 @@
 # Directories
 .vs/
 x64/
+logs/
 
 # Files
 *.user
