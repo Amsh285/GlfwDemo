@@ -12,11 +12,15 @@ namespace dsr
 	public:
 		static std::shared_ptr<ElementBufferObject> GenerateGL();
 
-		ElementBufferObject() = delete;
-
 		void Bind();
 		void SetBufferData(const std::vector<unsigned int>& indices, bool staticDraw = false);
 		void Unbind();
+
+		ElementBufferObject() = delete;
+		ElementBufferObject(const ElementBufferObject& other) = delete;
+		ElementBufferObject& operator=(const ElementBufferObject& other) = delete;
+
+		~ElementBufferObject();
 	private:
 		ElementBufferObject(const unsigned int& ebo) : m_ebo(ebo) {};
 		unsigned int m_ebo;

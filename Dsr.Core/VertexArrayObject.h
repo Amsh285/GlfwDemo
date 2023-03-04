@@ -11,10 +11,14 @@ namespace dsr
 	public:
 		static std::shared_ptr<VertexArrayObject> GenerateGL();
 
-		VertexArrayObject() = delete;
-
 		void Bind();
 		void Unbind();
+
+		VertexArrayObject() = delete;
+		VertexArrayObject(const VertexArrayObject& other) = delete;
+		VertexArrayObject& operator=(const VertexArrayObject& other) = delete;
+
+		~VertexArrayObject();
 	private:
 		VertexArrayObject(const unsigned int& vao) : m_vao(vao) {};
 		unsigned int m_vao;

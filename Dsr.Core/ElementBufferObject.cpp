@@ -28,4 +28,9 @@ namespace dsr
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
+
+	ElementBufferObject::~ElementBufferObject()
+	{
+		glDeleteBuffers(1, &m_ebo);
+	}
 }

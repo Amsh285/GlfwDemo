@@ -29,4 +29,9 @@ namespace dsr
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
+
+	VertexBufferObject::~VertexBufferObject()
+	{
+		glDeleteBuffers(1, &m_vbo);
+	}
 }

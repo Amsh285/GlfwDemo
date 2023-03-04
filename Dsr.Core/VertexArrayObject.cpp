@@ -19,4 +19,9 @@ namespace dsr
 	{
 		glBindVertexArray(0);
 	}
+
+	VertexArrayObject::~VertexArrayObject()
+	{
+		glDeleteVertexArrays(1, &m_vao);
+	}
 }
