@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "DsrCore.h"
+
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 #include "Shader.h"
 #include "ShaderProgram.h"

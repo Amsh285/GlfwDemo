@@ -2,17 +2,31 @@
 
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "GlfwInitialize.h"
+
+#include "SpdLoggerFactory.h"
 
 #include "ShaderProgram.h"
 #include "SpdLoggerFactory.h"
 #include "VaoAggregate.h"
-
+#include "Gui/Window.h"
 
 int main()
 {
+	std::shared_ptr<spdlog::logger> logger = dsr::loggerfactory::CreateLogger("main");
 
+	dsr::GlfwInitialize init;
 
+	if (!init.GetResult())
+	{
+		logger->error("Failed to initialize GLFW. Shutting down.");
+		return EXIT_FAILURE;
+	}
+		
+	dsr::gui::Window* window = new dsr::gui::Window(dsr::gui::WindowData());
+	window->Init();
+	window->Show();
+
+	delete window;
 	return EXIT_SUCCESS;
 }

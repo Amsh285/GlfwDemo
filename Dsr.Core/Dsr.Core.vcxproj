@@ -87,8 +87,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DsrCore.h" />
     <ClInclude Include="ElementBufferObject.h" />
+    <ClInclude Include="GlfwInitialize.h" />
     <ClInclude Include="InvalidOperationException.h" />
     <ClInclude Include="NotSupportedException.h" />
     <ClInclude Include="Shader.h" />
@@ -99,6 +99,8 @@
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="VertexAttributeContainer.h" />
     <ClInclude Include="VertexBufferObject.h" />
+    <ClInclude Include="Gui\Window.h" />
+    <ClInclude Include="Gui\WindowInitStatus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ElementBufferObject.cpp" />
@@ -109,6 +111,8 @@
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexAttributeContainer.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
+    <ClCompile Include="Gui\Window.cpp" />
+    <ClCompile Include="Gui\WindowInitStatus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

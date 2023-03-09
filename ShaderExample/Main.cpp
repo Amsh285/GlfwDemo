@@ -120,8 +120,6 @@ int main()
 	std::shared_ptr<dsr::ShaderProgram> shaderProgram = LoadShaders();
 	std::shared_ptr<dsr::VaoAggregate> vao = LoadTriangle();
 
-	
-
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
