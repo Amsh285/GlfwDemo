@@ -56,7 +56,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -74,7 +74,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,32 +87,40 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ElementBufferObject.h" />
-    <ClInclude Include="GlfwInitialize.h" />
-    <ClInclude Include="InvalidOperationException.h" />
-    <ClInclude Include="NotSupportedException.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="SpdLoggerFactory.h" />
-    <ClInclude Include="VaoAggregate.h" />
-    <ClInclude Include="VertexArrayObject.h" />
-    <ClInclude Include="VertexAttribute.h" />
-    <ClInclude Include="VertexAttributeContainer.h" />
-    <ClInclude Include="VertexBufferObject.h" />
-    <ClInclude Include="Gui\Window.h" />
-    <ClInclude Include="Gui\WindowInitStatus.h" />
+    <ClInclude Include="src\LogManager.h" />
+    <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\ElementBufferObject.h" />
+    <ClInclude Include="src\Events\Event.h" />
+    <ClInclude Include="src\Events\EventHandler.h" />
+    <ClInclude Include="src\Events\EventReceiver.h" />
+    <ClInclude Include="src\Events\WindowEvents.h" />
+    <ClInclude Include="src\GlfwInitialize.h" />
+    <ClInclude Include="src\InvalidOperationException.h" />
+    <ClInclude Include="src\NotSupportedException.h" />
+    <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\SpdLoggerFactory.h" />
+    <ClInclude Include="src\VaoAggregate.h" />
+    <ClInclude Include="src\VertexArrayObject.h" />
+    <ClInclude Include="src\VertexAttribute.h" />
+    <ClInclude Include="src\VertexAttributeContainer.h" />
+    <ClInclude Include="src\VertexBufferObject.h" />
+    <ClInclude Include="src\Gui\Window.h" />
+    <ClInclude Include="src\Gui\WindowInitStatus.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ElementBufferObject.cpp" />
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="ShaderProgram.cpp" />
-    <ClCompile Include="VaoAggregate.cpp" />
-    <ClCompile Include="VertexArrayObject.cpp" />
-    <ClCompile Include="VertexAttributeContainer.cpp" />
-    <ClCompile Include="VertexBufferObject.cpp" />
-    <ClCompile Include="Gui\Window.cpp" />
-    <ClCompile Include="Gui\WindowInitStatus.cpp" />
+    <ClCompile Include="src\LogManager.cpp" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\ElementBufferObject.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\VaoAggregate.cpp" />
+    <ClCompile Include="src\VertexArrayObject.cpp" />
+    <ClCompile Include="src\VertexAttributeContainer.cpp" />
+    <ClCompile Include="src\VertexBufferObject.cpp" />
+    <ClCompile Include="src\Gui\Window.cpp" />
+    <ClCompile Include="src\Gui\WindowInitStatus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

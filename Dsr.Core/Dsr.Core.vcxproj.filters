@@ -15,78 +15,102 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="src\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VertexBufferObject.h">
+    <ClInclude Include="src\VertexBufferObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VertexArrayObject.h">
+    <ClInclude Include="src\VertexArrayObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ElementBufferObject.h">
+    <ClInclude Include="src\ElementBufferObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpdLoggerFactory.h">
+    <ClInclude Include="src\SpdLoggerFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NotSupportedException.h">
+    <ClInclude Include="src\NotSupportedException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InvalidOperationException.h">
+    <ClInclude Include="src\InvalidOperationException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderProgram.h">
+    <ClInclude Include="src\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VertexAttribute.h">
+    <ClInclude Include="src\VertexAttribute.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VaoAggregate.h">
+    <ClInclude Include="src\VaoAggregate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VertexAttributeContainer.h">
+    <ClInclude Include="src\VertexAttributeContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\Window.h">
+    <ClInclude Include="src\Gui\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\WindowInitStatus.h">
+    <ClInclude Include="src\Gui\WindowInitStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlfwInitialize.h">
+    <ClInclude Include="src\GlfwInitialize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\EventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\EventReceiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\WindowEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBufferObject.cpp">
+    <ClCompile Include="src\VertexBufferObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VertexArrayObject.cpp">
+    <ClCompile Include="src\VertexArrayObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ElementBufferObject.cpp">
+    <ClCompile Include="src\ElementBufferObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
+    <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VaoAggregate.cpp">
+    <ClCompile Include="src\VaoAggregate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VertexAttributeContainer.cpp">
+    <ClCompile Include="src\VertexAttributeContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\Window.cpp">
+    <ClCompile Include="src\Gui\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\WindowInitStatus.cpp">
+    <ClCompile Include="src\Gui\WindowInitStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LogManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

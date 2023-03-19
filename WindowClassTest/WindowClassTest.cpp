@@ -4,8 +4,6 @@
 
 #include "GlfwInitialize.h"
 
-#include "SpdLoggerFactory.h"
-
 #include "ShaderProgram.h"
 #include "SpdLoggerFactory.h"
 #include "VaoAggregate.h"
@@ -23,7 +21,7 @@ int main()
 		return EXIT_FAILURE;
 	}
 		
-	dsr::gui::Window* window = new dsr::gui::Window(dsr::gui::WindowData());
+	dsr::gui::Window* window = new dsr::gui::Window(dsr::gui::WindowProps());
 	window->Init();
 	window->Show();
 
