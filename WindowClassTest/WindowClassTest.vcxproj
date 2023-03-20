@@ -75,11 +75,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="WindowClassTest.cpp" />
+    <ClCompile Include="WindowTestApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dsr.Core\Dsr.Core.vcxproj">
       <Project>{4eed8574-00a9-4d10-9d37-cf795f00c00a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WindowTestApplication.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

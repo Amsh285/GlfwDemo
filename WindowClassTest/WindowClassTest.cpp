@@ -2,29 +2,16 @@
 
 #include <iostream>
 
-#include "GlfwInitialize.h"
-
-#include "ShaderProgram.h"
-#include "SpdLoggerFactory.h"
-#include "VaoAggregate.h"
-#include "Gui/Window.h"
+#include "LogManager.h"
+#include "WindowTestApplication.h"
 
 int main()
 {
-	std::shared_ptr<spdlog::logger> logger = dsr::loggerfactory::CreateLogger("main");
+	std::shared_ptr<spdlog::logger> logger = dsr::LogManager::GetLogger("main");
 
-	dsr::GlfwInitialize init;
+	std::unique_ptr<WindowTestApplication> application = std::make_unique<WindowTestApplication>();
+	dsr::ApplicationExitCodes exitCode = application->Run();
 
-	if (!init.GetResult())
-	{
-		logger->error("Failed to initialize GLFW. Shutting down.");
-		return EXIT_FAILURE;
-	}
-		
-	dsr::gui::Window* window = new dsr::gui::Window(dsr::gui::WindowProps());
-	window->Init();
-	window->Show();
-
-	delete window;
-	return EXIT_SUCCESS;
+	logger->info("Shutting down Application: (Message: {0}) (Code: {1}).", exitCode.Message, exitCode.Code);
+	return exitCode.Code;
 }

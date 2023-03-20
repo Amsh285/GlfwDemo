@@ -107,6 +107,7 @@
     <ClInclude Include="src\VertexBufferObject.h" />
     <ClInclude Include="src\Gui\Window.h" />
     <ClInclude Include="src\Gui\WindowInitStatus.h" />
+    <ClInclude Include="src\WindowApplication.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\LogManager.cpp" />
@@ -121,6 +122,7 @@
     <ClCompile Include="src\VertexBufferObject.cpp" />
     <ClCompile Include="src\Gui\Window.cpp" />
     <ClCompile Include="src\Gui\WindowInitStatus.cpp" />
+    <ClCompile Include="src\WindowApplication.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

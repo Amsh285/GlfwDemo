@@ -1,21 +1,25 @@
 #pragma once
 
-#include <memory>
-#include <functional>
-
-#include "Gui/Window.h"
+#include <string>
 
 namespace dsr
 {
+	struct ApplicationExitCodes
+	{
+		static int SuccessExitCode;
+		static ApplicationExitCodes Success();
+
+		std::string Message;
+		int Code;
+
+		ApplicationExitCodes(const std::string& message, const int& code)
+			: Message(message), Code(code) {}
+	};
+
 	class Application
 	{
 	public:
-		Application();
-
-
-
-		virtual ~Application();
-	private:
-		std::shared_ptr<dsr::gui::Window> m_window;
+		virtual ApplicationExitCodes Run() = 0;
+		virtual ~Application() {}
 	};
 }

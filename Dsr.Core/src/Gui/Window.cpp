@@ -20,7 +20,7 @@ namespace dsr
 
 			glfwSetWindowUserPointer(m_window, this);
 			SetupResizeEventHandler();
-			SetupWindowCloseEventHandler();
+			/*SetupWindowCloseEventHandler();*/
 
 			return WindowInitStatus::Success();
 		}
@@ -70,11 +70,6 @@ namespace dsr
 				});
 
 			m_resizeEvent.Hook(m_windowManager, &WindowMangager::OnResize);
-		}
-
-		void Window::SetupWindowCloseEventHandler()
-		{
-			/*glfwSetWindowCloseCallback*/
 		}
 
 		void Window::WindowMangager::OnResize(dsr::events::WindowResizeEvent& resizeEvent)

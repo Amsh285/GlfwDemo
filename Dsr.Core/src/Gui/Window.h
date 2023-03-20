@@ -78,7 +78,7 @@ namespace dsr
 			};
 
 			void SetupResizeEventHandler();
-			void SetupWindowCloseEventHandler();
+			/*void SetupWindowCloseEventHandler();*/
 
 			GLFWwindow* m_window = nullptr;
 
