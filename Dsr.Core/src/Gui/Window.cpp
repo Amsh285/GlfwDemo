@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "Window.h"
 
 namespace dsr

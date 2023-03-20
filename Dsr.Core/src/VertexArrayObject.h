@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "glad/glad.h"
 
 namespace dsr

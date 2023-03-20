@@ -1,9 +1,5 @@
 #pragma once
 
-#include <assert.h>
-#include <memory>
-#include <vector>
-
 #include "Event.h"
 #include "EventReceiver.h"
 

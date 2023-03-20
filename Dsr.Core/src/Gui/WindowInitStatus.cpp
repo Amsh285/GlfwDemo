@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "WindowInitStatus.h"
 
 namespace dsr

@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "Shader.h"
 
 namespace dsr

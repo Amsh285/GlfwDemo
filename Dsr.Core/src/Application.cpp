@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "Application.h"
 
 namespace dsr

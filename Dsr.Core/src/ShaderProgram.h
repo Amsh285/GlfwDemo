@@ -1,8 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <stdexcept>
-
 #include "InvalidOperationException.h"
 #include "glad/glad.h"
 #include "Shader.h"

@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "LogManager.h"
 
 namespace dsr

@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "VaoAggregate.h"
 
 namespace dsr

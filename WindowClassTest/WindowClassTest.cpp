@@ -1,6 +1,5 @@
 
-
-#include <iostream>
+#include "dsrpch.h"
 
 #include "LogManager.h"
 #include "WindowTestApplication.h"

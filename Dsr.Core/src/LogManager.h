@@ -1,8 +1,5 @@
 #pragma once
 
-#include <map>
-#include <string>
-
 #include "SpdLoggerFactory.h"
 
 namespace dsr

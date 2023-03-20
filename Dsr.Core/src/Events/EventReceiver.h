@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include "Event.h"
 
 namespace dsr

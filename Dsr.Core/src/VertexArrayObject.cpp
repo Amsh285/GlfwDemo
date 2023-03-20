@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "VertexArrayObject.h"
 
 namespace dsr

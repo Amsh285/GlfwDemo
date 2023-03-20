@@ -1,10 +1,5 @@
 #pragma once
 
-#include <fstream>
-#include <memory>
-#include <sstream>
-#include <string>
-
 #include <glad/glad.h>
 #include "InvalidOperationException.h"
 #include "NotSupportedException.h"

@@ -1,3 +1,5 @@
+
+#include "dsrpch.h"
 #include "WindowTestApplication.h"
 
 dsr::ApplicationExitCodes WindowTestApplication::Setup()

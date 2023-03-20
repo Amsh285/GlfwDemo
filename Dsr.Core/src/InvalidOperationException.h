@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdexcept>
-
 namespace dsr
 {
 	class InvalidOperationException : public std::runtime_error

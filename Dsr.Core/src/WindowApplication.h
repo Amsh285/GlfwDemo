@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Application.h"
 #include "GlfwInitialize.h"
 #include "Gui/Window.h"
