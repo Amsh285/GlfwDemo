@@ -1,3 +1,6 @@
 [submodule "Dsr.Core/vendor/spdlog"]
 	path = Dsr.Core/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Dsr.Core/vendor/glm"]
+	path = Dsr.Core/vendor/glm
+	url = https://github.com/g-truc/glm
