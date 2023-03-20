@@ -21,9 +21,15 @@
     <ClCompile Include="WindowTestApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wctpch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowTestApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wctpch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

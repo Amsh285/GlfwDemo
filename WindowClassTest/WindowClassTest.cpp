@@ -1,5 +1,5 @@
 
-#include "dsrpch.h"
+#include "wctpch.h"
 
 #include "LogManager.h"
 #include "WindowTestApplication.h"
