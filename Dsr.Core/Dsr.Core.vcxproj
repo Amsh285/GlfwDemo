@@ -56,7 +56,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\glm;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>dsrpch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -77,7 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\glm;vendor\spdlog\include;dependencies\GLFW\include;dependencies\glad\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>dsrpch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -93,6 +93,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\IdGenerator\IdGenerator.h" />
+    <ClInclude Include="src\Render\RenderContext.h" />
+    <ClInclude Include="src\Actors\Quad.h" />
+    <ClInclude Include="src\Actors\Actor.h" />
     <ClInclude Include="src\dsrpch.h" />
     <ClInclude Include="src\LogManager.h" />
     <ClInclude Include="src\Application.h" />
@@ -115,8 +119,13 @@
     <ClInclude Include="src\Gui\Window.h" />
     <ClInclude Include="src\Gui\WindowInitStatus.h" />
     <ClInclude Include="src\WindowApplication.h" />
+    <ClInclude Include="src\Actors\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\IdGenerator\IdGenerator.cpp" />
+    <ClCompile Include="src\Render\RenderContext.cpp" />
+    <ClCompile Include="src\Actors\Quad.cpp" />
+    <ClCompile Include="src\Actors\Actor.cpp" />
     <ClCompile Include="src\dsrpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -141,6 +150,7 @@
     <ClCompile Include="src\Gui\Window.cpp" />
     <ClCompile Include="src\Gui\WindowInitStatus.cpp" />
     <ClCompile Include="src\WindowApplication.cpp" />
+    <ClCompile Include="src\Actors\Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

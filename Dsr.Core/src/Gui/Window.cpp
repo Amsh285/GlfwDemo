@@ -18,6 +18,7 @@ namespace dsr
 			if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 				return WindowInitStatus::GladInitializationFailed();
 
+			glEnable(GL_DEPTH_TEST);
 			glViewport(m_data->View.X, m_data->View.Height, m_data->View.Width, m_data->View.Height);
 
 			glfwSetWindowUserPointer(m_window, this);
@@ -32,7 +33,7 @@ namespace dsr
 			while (!glfwWindowShouldClose(m_window))
 			{
 				glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-				glClear(GL_COLOR_BUFFER_BIT);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				//render here
 
 
