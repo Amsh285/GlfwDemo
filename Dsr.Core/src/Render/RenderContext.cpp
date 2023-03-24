@@ -6,26 +6,26 @@ namespace dsr
 	namespace render
 	{
 		RenderContext::RenderContext(
-			glm::mat4 modelMatrix,
+			const int& actorId,
 			std::shared_ptr<VaoAggregate> vao,
 			std::shared_ptr<ShaderProgram> shaderProgram
 		)
-			: m_ModelMatrix(modelMatrix)
-			, m_Vao(vao)
-			, m_ShaderProgram(shaderProgram)
+			: m_ActorId(actorId),
+			m_Vao(vao),
+			m_ShaderProgram(shaderProgram)
 		{
 		}
 
 		RenderContext::RenderContext(
-			glm::mat4 modelMatrix,
+			const int& actorId,
 			std::shared_ptr<VaoAggregate> vao,
 			std::shared_ptr<ShaderProgram> shaderProgram,
-			std::vector<dsr::actors::Transform> transforms
+			std::vector<RenderData> data
 		)
-			: m_ModelMatrix(modelMatrix)
-			, m_Vao(vao)
-			, m_ShaderProgram(shaderProgram)
-			, m_Transforms(transforms)
+			: m_ActorId(actorId),
+			m_Data(data),
+			m_Vao(vao),
+			m_ShaderProgram(shaderProgram)
 		{
 		}
 	}

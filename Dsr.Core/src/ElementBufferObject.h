@@ -9,6 +9,8 @@ namespace dsr
 	public:
 		static std::shared_ptr<ElementBufferObject> GenerateGL();
 
+		std::size_t GetIndexCount() const { return m_indexCount; }
+
 		void Bind();
 		void SetBufferData(const std::vector<unsigned int>& indices, bool staticDraw = false);
 		void Unbind();
@@ -20,6 +22,7 @@ namespace dsr
 		~ElementBufferObject();
 	private:
 		ElementBufferObject(const unsigned int& ebo) : m_ebo(ebo) {};
+		std::size_t m_indexCount;
 		unsigned int m_ebo;
 	};
 }

@@ -24,6 +24,11 @@ namespace dsr
 			sizeof(unsigned int) * indices.size(),
 			indices.data(),
 			staticDraw ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW);
+
+		// https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferData.xhtml
+		// Todo: Checkout Errors-section. Don´t set m_indexCount if error occured.
+
+		m_indexCount = indices.size();
 	}
 
 	void ElementBufferObject::Unbind()

@@ -93,6 +93,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Gui\Viewport.h" />
+    <ClInclude Include="src\Render\Renderer.h" />
     <ClInclude Include="src\IdGenerator\IdGenerator.h" />
     <ClInclude Include="src\Render\RenderContext.h" />
     <ClInclude Include="src\Actors\Quad.h" />
@@ -122,6 +124,7 @@
     <ClInclude Include="src\Actors\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Render\Renderer.cpp" />
     <ClCompile Include="src\IdGenerator\IdGenerator.cpp" />
     <ClCompile Include="src\Render\RenderContext.cpp" />
     <ClCompile Include="src\Actors\Quad.cpp" />

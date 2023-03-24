@@ -21,6 +21,8 @@ namespace dsr
 		void Link() const;
 		ShaderLinkStatus GetLinkStatus() const;
 
+
+		bool SetUniform(const std::string& name, const glm::mat4& value) const;
 		void Use() const;
 
 		ShaderProgram() = delete;

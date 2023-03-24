@@ -45,6 +45,17 @@ namespace dsr
 		return linkStatus;
 	}
 
+	bool ShaderProgram::SetUniform(const std::string& name, const glm::mat4& value) const
+	{
+		int location = glGetUniformLocation(m_programId, name.c_str());
+
+		if (location == -1)
+			return false;
+		
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+		return true;
+	}
+
 	void ShaderProgram::Use() const
 	{
 		glUseProgram(m_programId);

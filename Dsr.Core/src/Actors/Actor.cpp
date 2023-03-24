@@ -6,7 +6,7 @@ namespace dsr
 	namespace actors
 	{
 		Actor::Actor()
-			: m_ActorId(dsr::idgen::NextId("GetActorType()"))
+			: m_ActorId(dsr::idgen::NextId(GetActorType()))
 		{
 		}
 

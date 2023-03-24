@@ -8,19 +8,13 @@
 #include "Events/EventHandler.h"
 #include "Events/WindowEvents.h"
 #include "LogManager.h"
+#include "Viewport.h"
 #include "WindowInitStatus.h"
 
 namespace dsr
 {
 	namespace gui
 	{
-		struct Viewport
-		{
-			int X, Y;
-			int Width, Height;
-			float Width_f, Height_f;
-		};
-
 		struct WindowProps
 		{
 			std::string Title;

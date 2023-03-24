@@ -16,6 +16,8 @@ namespace dsr
 			const std::vector<unsigned int>& indices,
 			const VertexAttributeContainer& attributes);
 
+		std::size_t GetIndexCount() const { return m_ebo->GetIndexCount(); };
+
 		void Bind() const { m_vao->Bind(); };
 		void Unbind() const { m_vao->Unbind(); };
 
