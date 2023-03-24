@@ -22,6 +22,7 @@ namespace dsr
 		if (setupExitCode.Code != dsr::ApplicationExitCodes::SuccessExitCode)
 			return setupExitCode;
 
+		m_window->HookWindowUpdateEvent(m_renderer, static_cast<dsr::gui::Window::WindowUpdateEventCallback>(&dsr::render::Renderer::Update));
 		m_window->Show();
 
 		return ApplicationExitCodes::Success();

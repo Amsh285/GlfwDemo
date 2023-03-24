@@ -11,6 +11,8 @@ namespace dsr
 			// Just a test
 			glm::mat4 view = glm::mat4(1.0f);
 			m_ViewMatrix = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+			m_ProjectionMatrix = glm::mat4(1.0f);
 		}
 
 		void Renderer::AddRenderContext(const RenderContext& renderContext)
@@ -18,14 +20,17 @@ namespace dsr
 			m_RenderContexts.push_back(renderContext);
 		}
 
-		void Renderer::Update(const dsr::gui::Viewport& viewPort)
+		void Renderer::Update(dsr::events::WindowUpdateEvent& event)
 		{
+			dsr::gui::Viewport viewPort = event.GetWindowData().View;
+
 			// Todo (next branch): Use Cameras...
 			// Just a test
 			// Check if Widthf and Heightf are right, because they are floats and viewport is setup with ints.
-			glm::mat4 projection = glm::mat4(1.0f);
 			m_ProjectionMatrix = glm::perspective(glm::radians(45.0f), viewPort.Width_f / viewPort.Height_f, 0.1f, 100.0f);
 
+
+			// maybe make this private const members
 			const std::string uniformModelName = "model";
 			const std::string uniformViewName = "view";
 			const std::string uniformProjectionName = "projection";

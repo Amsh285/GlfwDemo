@@ -9,6 +9,7 @@
 #include "Events/WindowEvents.h"
 #include "LogManager.h"
 #include "Viewport.h"
+#include "WindowData.h"
 #include "WindowInitStatus.h"
 
 namespace dsr
@@ -31,6 +32,16 @@ namespace dsr
 		class Window
 		{
 		public:
+			using EventReceiver = std::shared_ptr<dsr::events::EventReceiver>;
+			using EventCallback = dsr::events::EventHandler<dsr::events::EventReceiver, dsr::events::Event>::EventDelegate;
+			using WindowUpdateEventCallback = dsr::events::EventHandler<dsr::events::EventReceiver, dsr::events::WindowUpdateEvent>::EventDelegate;
+
+			void HookUpdateEvent(const EventReceiver& receiver, EventCallback callback);
+			void UnhookUpdateEvent(const EventReceiver& receiver);
+
+			void HookWindowUpdateEvent(const EventReceiver& receiver, WindowUpdateEventCallback callback);
+			void UnhookWindowUpdateEvent(const EventReceiver& receiver);
+
 			WindowInitStatus Init();
 			void Show();
 
@@ -40,24 +51,6 @@ namespace dsr
 			Window& operator=(const Window& other) = delete;
 			~Window();
 		private:
-			struct WindowData
-			{
-				std::string Title;
-				int Width, Height;
-				Viewport View;
-
-				WindowData()
-				{
-					Title = "Window";
-					Width = 1024;
-					Height = 768;
-
-					View.X = View.Y = 0;
-					View.Width = 1024;
-					View.Height = 768;
-				}
-			};
-
 			class WindowMangager : public dsr::events::EventReceiver
 			{
 			public:
@@ -76,6 +69,8 @@ namespace dsr
 
 			GLFWwindow* m_window = nullptr;
 
+			dsr::events::EventHandler<dsr::events::EventReceiver, dsr::events::Event> m_updateEvent;
+			dsr::events::EventHandler<dsr::events::EventReceiver, dsr::events::WindowUpdateEvent> m_windowUpdateEvent;
 			dsr::events::EventHandler<dsr::events::EventReceiver, dsr::events::WindowResizeEvent> m_resizeEvent;
 
 			std::shared_ptr<WindowData> m_data;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Event.h"
+#include "Gui/WindowData.h"
 
 namespace dsr
 {
@@ -18,6 +19,18 @@ namespace dsr
 
 		private:
 			int m_newWidth, m_newHeight;
+		};
+
+		class WindowUpdateEvent : public Event
+		{
+		public:
+			dsr::gui::WindowData GetWindowData() const { return m_data; }
+
+			WindowUpdateEvent(const dsr::gui::WindowData& data)
+				: m_data(data)
+			{}
+		private:
+			dsr::gui::WindowData m_data;
 		};
 	}
 }

@@ -6,6 +6,26 @@ namespace dsr
 {
 	namespace gui
 	{
+		void Window::HookUpdateEvent(const EventReceiver& receiver, EventCallback callback)
+		{
+			m_updateEvent.Hook(receiver, callback);
+		}
+
+		void Window::UnhookUpdateEvent(const EventReceiver& receiver)
+		{
+			m_updateEvent.UnHookAll(receiver);
+		}
+
+		void Window::HookWindowUpdateEvent(const EventReceiver& receiver, WindowUpdateEventCallback callback)
+		{
+			m_windowUpdateEvent.Hook(receiver, callback);
+		}
+
+		void Window::UnhookWindowUpdateEvent(const EventReceiver& receiver)
+		{
+			m_windowUpdateEvent.UnHookAll(receiver);
+		}
+
 		WindowInitStatus Window::Init()
 		{
 			m_window = glfwCreateWindow(m_data->Width, m_data->Height, m_data->Title.c_str(), NULL, NULL);
@@ -34,8 +54,14 @@ namespace dsr
 			{
 				glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+				
 				//render here
+				dsr::events::Event e;
+				m_updateEvent(e);
 
+				// m_data maybe shouldn´t be a shared ptr
+				dsr::events::WindowUpdateEvent windowUpdateEvent(*m_data);
+				m_windowUpdateEvent(windowUpdateEvent);
 
 				glfwSwapBuffers(m_window);
 				glfwPollEvents();

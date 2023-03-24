@@ -93,6 +93,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Gui\WindowData.h" />
     <ClInclude Include="src\Gui\Viewport.h" />
     <ClInclude Include="src\Render\Renderer.h" />
     <ClInclude Include="src\IdGenerator\IdGenerator.h" />
