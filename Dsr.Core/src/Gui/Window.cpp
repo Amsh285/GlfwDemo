@@ -6,26 +6,6 @@ namespace dsr
 {
 	namespace gui
 	{
-		void Window::HookUpdateEvent(const EventReceiver& receiver, EventCallback callback)
-		{
-			m_updateEvent.Hook(receiver, callback);
-		}
-
-		void Window::UnhookUpdateEvent(const EventReceiver& receiver)
-		{
-			m_updateEvent.UnHookAll(receiver);
-		}
-
-		void Window::HookWindowUpdateEvent(const EventReceiver& receiver, WindowUpdateEventCallback callback)
-		{
-			m_windowUpdateEvent.Hook(receiver, callback);
-		}
-
-		void Window::UnhookWindowUpdateEvent(const EventReceiver& receiver)
-		{
-			m_windowUpdateEvent.UnHookAll(receiver);
-		}
-
 		WindowInitStatus Window::Init()
 		{
 			m_window = glfwCreateWindow(m_data->Width, m_data->Height, m_data->Title.c_str(), NULL, NULL);
@@ -57,11 +37,11 @@ namespace dsr
 				
 				//render here
 				dsr::events::Event e;
-				m_updateEvent(e);
+				UpdateEvent(e);
 
 				// m_data maybe shouldn´t be a shared ptr
 				dsr::events::WindowUpdateEvent windowUpdateEvent(*m_data);
-				m_windowUpdateEvent(windowUpdateEvent);
+				WindowUpdateEvent(windowUpdateEvent);
 
 				glfwSwapBuffers(m_window);
 				glfwPollEvents();
@@ -95,10 +75,10 @@ namespace dsr
 				{
 					Window* instance = static_cast<Window*>(glfwGetWindowUserPointer(window));
 					dsr::events::WindowResizeEvent event(newWidth, newHeight);
-					instance->m_resizeEvent(event);
+					instance->ResizeEvent(event);
 				});
 
-			m_resizeEvent.Hook(m_windowManager, &WindowMangager::OnResize);
+			ResizeEvent.Hook(m_windowManager, &WindowMangager::OnResize);
 		}
 
 		void Window::WindowMangager::OnResize(dsr::events::WindowResizeEvent& resizeEvent)
