@@ -37,7 +37,7 @@ namespace dsr
 
 			for (dsr::render::RenderContext& renderContext : m_RenderContexts)
 			{
-				std::shared_ptr<dsr::ShaderProgram> shader = renderContext.GetShaderProgram();
+				std::shared_ptr<dsr::shading::ShaderProgram> shader = renderContext.GetShaderProgram();
 				shader->Use();
 
 				for (dsr::render::RenderData& data : renderContext.GetData())

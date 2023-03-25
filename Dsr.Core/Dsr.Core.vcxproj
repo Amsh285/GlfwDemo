@@ -111,8 +111,8 @@
     <ClInclude Include="src\GlfwInitialize.h" />
     <ClInclude Include="src\InvalidOperationException.h" />
     <ClInclude Include="src\NotSupportedException.h" />
-    <ClInclude Include="src\Shader.h" />
-    <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\Shading\Shader.h" />
+    <ClInclude Include="src\Shading\ShaderProgram.h" />
     <ClInclude Include="src\SpdLoggerFactory.h" />
     <ClInclude Include="src\VaoAggregate.h" />
     <ClInclude Include="src\VertexArrayObject.h" />
@@ -145,8 +145,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Shader.cpp" />
-    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\Shading\Shader.cpp" />
+    <ClCompile Include="src\Shading\ShaderProgram.cpp" />
     <ClCompile Include="src\VaoAggregate.cpp" />
     <ClCompile Include="src\VertexArrayObject.cpp" />
     <ClCompile Include="src\VertexAttributeContainer.cpp" />

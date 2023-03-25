@@ -39,7 +39,6 @@ namespace dsr
 				dsr::events::Event e;
 				UpdateEvent(e);
 
-				// m_data maybe shouldn´t be a shared ptr
 				dsr::events::WindowUpdateEvent windowUpdateEvent(*m_data);
 				WindowUpdateEvent(windowUpdateEvent);
 

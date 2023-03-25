@@ -8,7 +8,7 @@ namespace dsr
 		RenderContext::RenderContext(
 			const int& actorId,
 			std::shared_ptr<VaoAggregate> vao,
-			std::shared_ptr<ShaderProgram> shaderProgram
+			std::shared_ptr<dsr::shading::ShaderProgram> shaderProgram
 		)
 			: m_ActorId(actorId),
 			m_Vao(vao),
@@ -19,7 +19,7 @@ namespace dsr
 		RenderContext::RenderContext(
 			const int& actorId,
 			std::shared_ptr<VaoAggregate> vao,
-			std::shared_ptr<ShaderProgram> shaderProgram,
+			std::shared_ptr<dsr::shading::ShaderProgram> shaderProgram,
 			std::vector<RenderData> data
 		)
 			: m_ActorId(actorId),

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Shader.h">
+    <ClInclude Include="src\Shading\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\VertexBufferObject.h">
@@ -36,7 +36,7 @@
     <ClInclude Include="src\InvalidOperationException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShaderProgram.h">
+    <ClInclude Include="src\Shading\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\VertexAttribute.h">
@@ -107,7 +107,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Shader.cpp">
+    <ClCompile Include="src\Shading\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\glad.c">
@@ -122,7 +122,7 @@
     <ClCompile Include="src\ElementBufferObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShaderProgram.cpp">
+    <ClCompile Include="src\Shading\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\VaoAggregate.cpp">
