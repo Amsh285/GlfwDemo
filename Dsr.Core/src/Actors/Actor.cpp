@@ -5,8 +5,10 @@ namespace dsr
 {
 	namespace actors
 	{
-		Actor::Actor()
-			: m_ActorId(dsr::idgen::NextId(GetActorType()))
+		Actor::Actor(const std::string& name)
+			: m_ActorId(dsr::idgen::NextId(ActorIdConstants::ActorIdField)),
+			m_Name(name),
+			m_CopyOf(-1)
 		{
 		}
 

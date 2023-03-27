@@ -45,10 +45,10 @@ namespace dsr
 					if (!shader->SetUniform(uniformModelName, data.ModelMatrix))
 					{
 						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, InstanceId: {2})",
+							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
 							uniformModelName,
-							renderContext.GetActorId(),
-							data.InstanceId
+							data.ActorId,
+							data.CopyOf
 						);
 						break;
 					}
@@ -56,10 +56,10 @@ namespace dsr
 					if (!shader->SetUniform(uniformViewName, m_ViewMatrix))
 					{
 						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, InstanceId: {2})",
+							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
 							uniformViewName,
-							renderContext.GetActorId(),
-							data.InstanceId
+							data.ActorId,
+							data.CopyOf
 						);
 						break;
 					}
@@ -67,10 +67,10 @@ namespace dsr
 					if (!shader->SetUniform(uniformProjectionName, m_ProjectionMatrix))
 					{
 						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, InstanceId: {2})",
+							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
 							uniformProjectionName,
-							renderContext.GetActorId(),
-							data.InstanceId
+							data.ActorId,
+							data.CopyOf
 						);
 						break;
 					}
