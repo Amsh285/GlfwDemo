@@ -5,7 +5,8 @@ namespace dsr
 {
 	namespace render
 	{
-		Renderer::Renderer()
+		Renderer::Renderer(const std::shared_ptr<RenderContextRegister>& renderContextRegister)
+			: m_RenderContextRegister(renderContextRegister)
 		{
 			// Todo (next branch): Use Cameras...
 			// Just a test
@@ -15,11 +16,6 @@ namespace dsr
 			m_ProjectionMatrix = glm::mat4(1.0f);
 		}
 
-		void Renderer::AddRenderContext(const RenderContext& renderContext)
-		{
-			m_RenderContexts.push_back(renderContext);
-		}
-
 		void Renderer::Update(dsr::events::WindowUpdateEvent& event)
 		{
 			dsr::gui::Viewport viewPort = event.GetWindowData().View;
@@ -27,6 +23,7 @@ namespace dsr
 			// Todo (next branch): Use Cameras...
 			// Just a test
 			// Check if Widthf and Heightf are right, because they are floats and viewport is setup with ints.
+			// should be updated on window resize
 			m_ProjectionMatrix = glm::perspective(glm::radians(45.0f), viewPort.Width_f / viewPort.Height_f, 0.1f, 100.0f);
 
 
@@ -35,51 +32,58 @@ namespace dsr
 			const std::string uniformViewName = "view";
 			const std::string uniformProjectionName = "projection";
 
-			for (dsr::render::RenderContext& renderContext : m_RenderContexts)
+			for (const std::pair<int, RenderContext>& contextEntry : m_RenderContextRegister->GetContexts())
 			{
-				std::shared_ptr<dsr::shading::ShaderProgram> shader = renderContext.GetShaderProgram();
-				shader->Use();
+				const RenderContext& renderContext = contextEntry.second;
 
-				for (dsr::render::RenderData& data : renderContext.GetData())
+				std::shared_ptr<VaoAggregate> vao = renderContext.GetVao();
+
+				if (vao)
 				{
-					if (!shader->SetUniform(uniformModelName, data.ModelMatrix))
+					for (std::shared_ptr<actors::Actor> actor : renderContext.GetData())
 					{
-						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
-							uniformModelName,
-							data.ActorId,
-							data.CopyOf
-						);
-						break;
-					}
+						std::shared_ptr<shading::ShaderProgram> shader = actor->GetShader();
+						shader->Use();
 
-					if (!shader->SetUniform(uniformViewName, m_ViewMatrix))
-					{
-						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
-							uniformViewName,
-							data.ActorId,
-							data.CopyOf
-						);
-						break;
-					}
+						// TODO: try to refactor this break statements. Maybe we can still try to draw the actor even
+						// if one of the uniforms failed to set.
+						if (!shader->SetUniform(uniformModelName, actor->GetModelMatrix()))
+						{
+							m_Logger->warn(
+								"Failed to set uniform-matrix: {0} for (ActorId: {1})",
+								uniformModelName,
+								actor->GetActorId()
+							);
+							break;
+						}
 
-					if (!shader->SetUniform(uniformProjectionName, m_ProjectionMatrix))
-					{
-						m_Logger->error(
-							"Failed to set uniform-matrix: {0} for (ActorId: {1}, CopyOf: {2})",
-							uniformProjectionName,
-							data.ActorId,
-							data.CopyOf
-						);
-						break;
-					}
+						if (!shader->SetUniform(uniformViewName, m_ViewMatrix))
+						{
+							m_Logger->warn(
+								"Failed to set uniform-matrix: {0} for (ActorId: {1})",
+								uniformViewName,
+								actor->GetActorId()
+							);
+							break;
+						}
 
-					std::shared_ptr<dsr::VaoAggregate> vao = renderContext.GetVao();
-					vao->Bind();
-					glDrawElements(GL_TRIANGLES, vao->GetIndexCount(), GL_UNSIGNED_INT, 0);
-					vao->Unbind();
+						if (!shader->SetUniform(uniformProjectionName, m_ProjectionMatrix))
+						{
+							m_Logger->warn(
+								"Failed to set uniform-matrix: {0} for (ActorId: {1})",
+								uniformProjectionName,
+								actor->GetActorId()
+							);
+							break;
+						}
+
+						vao->Bind();
+						glDrawElements(GL_TRIANGLES, vao->GetIndexCount(), GL_UNSIGNED_INT, 0);
+						vao->Unbind();
+					}
 				}
+				else
+					m_Logger->warn("No Vao found for (RenderContext: {0})", contextEntry.first);
 			}
 		}
 	}

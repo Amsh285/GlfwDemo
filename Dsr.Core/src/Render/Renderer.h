@@ -3,7 +3,7 @@
 #include "Events/WindowEvents.h"
 #include "Events/EventReceiver.h"
 #include "LogManager.h"
-#include "RenderContext.h"
+#include "RenderContextRegister.h"
 #include "Gui/Viewport.h"
 
 namespace dsr
@@ -13,12 +13,11 @@ namespace dsr
 		class Renderer : public dsr::events::EventReceiver
 		{
 		public:
-			Renderer();
+			Renderer(const std::shared_ptr<RenderContextRegister>& renderContextRegister);
 
-			void AddRenderContext(const RenderContext& renderContext);
 			void Update(dsr::events::WindowUpdateEvent& event);
 		private:
-			std::vector<RenderContext> m_RenderContexts;
+			std::shared_ptr<RenderContextRegister> m_RenderContextRegister;
 			std::shared_ptr<spdlog::logger> m_Logger = dsr::LogManager::GetLogger("dsr::render::Renderer");
 
 			//Todo (next branch): Use Cameras...
