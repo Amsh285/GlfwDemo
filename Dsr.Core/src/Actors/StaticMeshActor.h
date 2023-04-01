@@ -9,7 +9,7 @@ namespace dsr
 		class StaticMeshActor : public Actor
 		{
 		public:
-			virtual ActorType GetActorType() const override { return ActorType::StaticMesh; }
+			virtual ActorType GetActorType() const override;
 		};
 	}
 }

@@ -93,6 +93,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actors\CubeActor.h" />
+    <ClInclude Include="src\Actors\StaticMeshActor.h" />
     <ClInclude Include="src\Render\RenderContextRegister.h" />
     <ClInclude Include="src\Actors\ActorIdConstants.h" />
     <ClInclude Include="src\Actors\ActorType.h" />
@@ -128,6 +130,8 @@
     <ClInclude Include="src\Actors\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Actors\CubeActor.cpp" />
+    <ClCompile Include="src\Actors\StaticMeshActor.cpp" />
     <ClCompile Include="src\Render\RenderContextRegister.cpp" />
     <ClCompile Include="src\Actors\ActorIdConstants.cpp" />
     <ClCompile Include="src\Actors\ActorType.cpp" />
