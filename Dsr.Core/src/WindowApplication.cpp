@@ -10,7 +10,6 @@ namespace dsr
 
 		if (!init.GetResult())
 			return ApplicationExitCodes("Failed to initialize GLFW.", -100);
-
 		
 		dsr::gui::WindowInitStatus windowInitStatus = m_window->Init();
 
